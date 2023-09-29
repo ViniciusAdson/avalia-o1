@@ -13,7 +13,7 @@ int main() {
     scanf("%d", &ano);
 
     
-    if (ano == 1930 || ano == 1934 || ano == 1938 || ano == 1950 || 1954 || ano == 1958 || ano == 1962 || ano == 1966 ||  ano == 2018 || ano == 2022 || ano == 2026) {
+    if (ano == 1930 || ano == 1934 || ano == 1938 || ano == 1950 || ano == 1954 || ano == 1958 || ano == 1962 || ano == 1966 ||  ano == 2018 || ano == 2022 || ano == 2026) {
         printf("A Copa do Mundo ocorreu em %d.\n", ano);
     } else {
         printf("A Copa do Mundo nao ocorreu em %d.\n", ano);
