@@ -1,33 +1,45 @@
 # avalia-o1
-RESOLUÇÕES DA PRIMEIRA LISTA AVALIATIVA:
+RESOLUÇÕES DA SEGUNDA LISTA AVALIATIVA:
 
 QUESTÃO 1:
 
 #include <stdio.h>
 
 int main() {
-    int ano;
+    int valores[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int tamanhoAtual = 10;
 
-   
-    printf("Digite um ano para verificar se ocorreram Jogos Olimpicos de Verao ou Copa do Mundo: ");
-    scanf("%d", &ano);
+    while (tamanhoAtual > 1) {
+        
+        printf("Conjunto atual: ");
+        for (int i = 0; i < tamanhoAtual; i++) {
+            printf("%d ", valores[i]);
+        }
+        printf("\n");
 
-    
-    if (ano == 1930 || ano == 1934 || ano == 1938 || ano == 1950 || ano == 1954 || ano == 1958 || ano == 1962 || ano == 1966 ||  ano == 2018 || ano == 2022 || ano == 2026) {
-        printf("A Copa do Mundo ocorreu em %d.\n", ano);
-    } else {
-        printf("A Copa do Mundo nao ocorreu em %d.\n", ano);
+        
+        int novoTamanho = (tamanhoAtual % 2 == 0) ? tamanhoAtual / 2 : (tamanhoAtual / 2) + 1;
+        int novoConjunto[novoTamanho];
+
+        
+        for (int i = 0, j = 0; i < tamanhoAtual - 1; i += 2, j++) {
+            novoConjunto[j] = valores[i] + valores[i + 1];
+        }
+
+        
+        for (int i = 0; i < novoTamanho; i++) {
+            valores[i] = novoConjunto[i];
+        }
+
+        tamanhoAtual = novoTamanho;
     }
 
-    // Verifica se o ano corresponde a uma edição dos Jogos Olímpicos de Verão
-    if (ano == 1896 || ano == 1900 || ano == 1904 || ano == 1908 || ano == 1912 || ano == 2012 || ano == 2016 || ano == 2020 || ano == 2024) {
-        printf("Os Jogos Olimpicos de Verao ocorreram em %d.\n", ano);
-    } else {
-        printf("Os Jogos Olimpicos de Verao nao ocorreram em %d.\n", ano);
-    }
+    printf("\nResultado final: %d\n", valores[0]);
 
     return 0;
 }
+
+
 
 
 QUESTÃO 2:
@@ -37,30 +49,56 @@ QUESTÃO 2:
 #include <stdlib.h>
 
 
-
 int main(int argc, char *argv[]) {
 
-    int numero, digito, soma = 0;
-    
-    printf("Digite um número inteiro: ");
-    scanf("%d", &numero);
-    
 
-    if (numero % 2 == 0) {
-        printf("O número é par.\n");
+    char time1[50], time2[50];
+    float G1, G2, L1, L2, Z1, Z2, V1, V2, M1, M2, A1, A2;
+    float F1, F2;
+
+    printf("Digite o nome do Time 1: ");
+    scanf("%s", time1);
+
+    printf("Digite a força do goleiro do Time 1: ");
+    scanf("%f", &G1);
+    printf("Digite a força dos laterais do Time 1: ");
+    scanf("%f", &L1);
+    printf("Digite a força dos zagueiros do Time 1: ");
+    scanf("%f", &Z1);
+    printf("Digite a força dos volantes do Time 1: ");
+    scanf("%f", &V1);
+    printf("Digite a força dos meias do Time 1: ");
+    scanf("%f", &M1);
+    printf("Digite a força dos atacantes do Time 1: ");
+    scanf("%f", &A1);
+
+    printf("Digite o nome do Time 2: ");
+    scanf("%s", time2);
+
+    printf("Digite a força do goleiro do Time 2: ");
+    scanf("%f", &G2);
+    printf("Digite a força dos laterais do Time 2: ");
+    scanf("%f", &L2);
+    printf("Digite a força dos zagueiros do Time 2: ");
+    scanf("%f", &Z2);
+    printf("Digite a força dos volantes do Time 2: ");
+    scanf("%f", &V2);
+    printf("Digite a força dos meias do Time 2: ");
+    scanf("%f", &M2);
+    printf("Digite a força dos atacantes do Time 2: ");
+    scanf("%f", &A2);
+
+    F1 = (8 * G1 + 10 * (L1 + L2) + 5 * (Z1 + Z2) + 8 * (V1 + V2) + 11 * (M1 + M2) + 12 * (A1 + A2)) / 100;
+    F2 = (8 * G2 + 10 * (L1 + L2) + 5 * (Z1 + Z2) + 8 * (V1 + V2) + 11 * (M1 + M2) + 12 * (A1 + A2)) / 100;
+
+    if (F1 > F2) {
+        printf("%s é o time mais forte!\n", time1);
+    } else if (F2 > F1) {
+        printf("%s é o time mais forte!\n", time2);
     } else {
-        printf("O número é ímpar.\n");
+        printf("Os times têm a mesma força!\n");
     }
-    
-   
-    while (numero != 0) {
-        digito = numero % 10;
-        soma += digito;
-        numero /= 10;
-    }
-    
-    printf("A soma dos dígitos do número é: %d\n", soma);
-    
+
     return 0;
 }
 
@@ -68,93 +106,69 @@ QUESTÃO 3:
 
 
 #include <stdio.h>
+#include <string.h>
 
-int main() {
-    int senha_cadastrada;
-    int senha_digitada;
 
-    // Cadastro da senha
-    printf("Digite a senha a ser cadastrada (numero): ");
-    scanf("%d", &senha_cadastrada);
-    printf("Senha cadastrada com sucesso!\n");
-
-    // Validação da senha
-    printf("Digite a senha para validacao: ");
-    scanf("%d", &senha_digitada);
-
-    if (senha_digitada == senha_cadastrada) {
-        printf("Senha correta! Acesso permitido.\n");
-    } else {
-        printf("Senha incorreta! Acesso negado.\n");
+int main(){
+    int matrizA[4][4];
+    int matrizB[4][4];
+    int resultado[4][4];
+    char operacao[5];
+    
+    for (int i = 0; i < 4; i++)
+    {
+      for (int j = 0; j < 4; j++)
+      {
+         scanf("%d",&matrizA[i][j]);
+      }
+    }
+    for (int i = 0; i < 4; i++)
+    {
+      for (int j = 0; j < 4; j++)
+      {
+         scanf("%d",&matrizB[i][j]);
+      }
     }
 
-    return 0;
-}
+    scanf("%s", operacao);
 
-QUESTÃO 4:
-
-#include <stdio.h>
-
-int main() {
-    char nivel;
-    double salario, aumento;
-
-    printf("Digite o nivel do funcionario (a, b ou c): ");
-    scanf(" %c", &nivel);  
-
-    printf("Digite o salario do funcionario: ");
-    scanf("%lf", &salario);
-
-    switch (nivel) {
-        case 'a':
-            aumento = salario * 0.05;
-            break;
-        case 'b':
-            aumento = salario * 0.07;
-            break;
-        case 'c':
-            aumento = salario * 0.08;
-            break;
-        default:
-            printf("Nivel de experiencia invalido.\n");
-            return 1; 
-    }
-
-    double novo_salario = salario + aumento;
-    printf("O novo salario do funcionario e: R$ %.2lf\n", novo_salario);
-
-    return 0; 
-}
-
-QUESTÃO 5:
-
-#include <stdio.h>
-
-int main() {
-    int num1, num2;
-
-   
-    printf("Digite o primeiro valor inteiro: ");
-    scanf("%d", &num1);
-
-    printf("Digite o segundo valor inteiro: ");
-    scanf("%d", &num2);
-
-    if (num1 > num2) {
-        if (num1 % num2 == 0) {
-            printf("%d e maior que %d e e multiplo de %d.\n", num1, num2, num2);
-        } else {
-            printf("%d e maior que %d, mas nao e multiplo de %d.\n", num1, num2, num2);
+    if (strcmp(operacao,"soma")==0)
+    {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                resultado[i][j] = matrizA[i][j] + matrizB[i][j];
+            }
         }
-    } else if (num2 > num1) {
-        if (num2 % num1 == 0) {
-            printf("%d e maior que %d e é multiplo de %d.\n", num2, num1, num1);
-        } else {
-            printf("%d e maior que %d, mas nao e multiplo de %d.\n", num2, num1, num1);
-        }
-    } else {
-        printf("Os dois valores sao iguais.\n");
+     }
+    else if (strcmp(operacao,"sub")==0)
+    {
+       for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                resultado[i][j] = matrizA[i][j] - matrizB[i][j];
+            }
+       }
     }
-
+    else if (strcmp(operacao,"mult")==0)
+    {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                resultado[i][j]=0;
+                
+                for (int k = 0; k < 4; k++) {
+                  resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+                 }
+            }
+        }
+    }
+    
+    
+    for (int i = 0; i < 4; i++)
+    {
+      for (int j = 0; j < 4; j++)
+      {
+         printf("%*d",+4,resultado[i][j]);
+      }
+      printf("\n");
+    }
     return 0;
 }
