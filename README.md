@@ -5,30 +5,30 @@ Questão 1
 #include <stdio.h>
 
 int main(){
-    int num = 10;
+    int n = 10;
     int valores[10];
-    int conjunto_novo[10];
-    for (int i = 0; i < num; i++) {
+    int conjunton[10];
+    for (int i = 0; i < n; i++) {
         scanf("%d", &valores[i]);
     }
-    while (num > 1)
+    while (n > 1)
     {
-         for (int i = 0; i < num; i++) {
+         for (int i = 0; i < n; i++) {
             printf("%d", valores[i]);
             
-            if (i < num - 1) {
+            if (i < n - 1) {
                 printf(" ");
              }
          }
          printf("\n");
-         for (int i = 0; i < num - 1; i++)
+         for (int i = 0; i < n - 1; i++)
          {
-            conjunto_novo[i] = valores[i] + valores[i+1];
+            conjunton[i] = valores[i] + valores[i+1];
          }
-         num--;
-         for (int i = 0; i < num; i++)
+         n--;
+         for (int i = 0; i < n; i++)
          {
-            valores[i] = conjunto_novo[i];
+            valores[i] = conjunton[i];
          }
          
     }
@@ -47,24 +47,24 @@ float calculaForcaPonderada(int forcas[]) {
 }
 
 int main() {
-    int forcasTimeA[11] = {0}, forcasTimeB[11] = {0};
-    char nomeTimeA[31], nomeTimeB[31];
+    int forcasA[11] = {0}, forcasTimeB[11] = {0};
+    char nomeA[31], nomeTimeB[31];
     char nomeJogador[31], posicaoJogador;
     int forcaJogador;
     
     
-    scanf(" %30[^\n]", nomeTimeA);
+    scanf(" %30[^\n]", nomeA);
     for (int i = 0; i < 11; i++) {
         scanf(" %30[^;]; %c; %d", nomeJogador, &posicaoJogador, &forcaJogador);
 
         int posicao = (posicaoJogador == 'L') ? (forcasTimeA[1] == 0) ? 1 : 2 : 
-        (posicaoJogador == 'Z') ? (forcasTimeA[3] == 0) ? 3 : 4 : 
-        (posicaoJogador == 'V') ? (forcasTimeA[5] == 0) ? 5 : 6 : 
-        (posicaoJogador == 'M') ? (forcasTimeA[7] == 0) ? 7 : 8 : 
-        (posicaoJogador == 'A') ? (forcasTimeA[9] == 0) ? 9 : 10 : 0;
+        (posicaoJogador == 'Z') ? (forcasA[3] == 0) ? 3 : 4 : 
+        (posicaoJogador == 'V') ? (forcasA[5] == 0) ? 5 : 6 : 
+        (posicaoJogador == 'M') ? (forcasA[7] == 0) ? 7 : 8 : 
+        (posicaoJogador == 'A') ? (forcasA[9] == 0) ? 9 : 10 : 0;
 
-        if (forcasTimeA[posicao] == 0)
-            forcasTimeA[posicao] = forcaJogador;
+        if (forcasA[posicao] == 0)
+            forcasA[posicao] = forcaJogador;
     }
 
     scanf(" %30[^\n]", nomeTimeB);
@@ -72,24 +72,23 @@ int main() {
         scanf(" %30[^;]; %c; %d", nomeJogador, &posicaoJogador, &forcaJogador);
 
         int posicao = (posicaoJogador == 'L') ? (forcasTimeB[1] == 0) ? 1 : 2 : 
-        (posicaoJogador == 'Z') ? (forcasTimeB[3] == 0) ? 3 : 4 : 
-        (posicaoJogador == 'V') ? (forcasTimeB[5] == 0) ? 5 : 6 : 
-        (posicaoJogador == 'M') ? (forcasTimeB[7] == 0) ? 7 : 8 : 
-        (posicaoJogador == 'A') ? (forcasTimeB[9] == 0) ? 9 : 10 : 0;
+        (posicaoJogador == 'Z') ? (forcasB[3] == 0) ? 3 : 4 : 
+        (posicaoJogador == 'V') ? (forcasB[5] == 0) ? 5 : 6 : 
+        (posicaoJogador == 'M') ? (forcasB[7] == 0) ? 7 : 8 :     (posicaoJogador == 'A') ? (forcasB[9] == 0) ? 9 : 10 : 0;
 
-        if (forcasTimeB[posicao] == 0)
-            forcasTimeB[posicao] = forcaJogador;
+        if (forcasB[posicao] == 0)
+            forcasB[posicao] = forcaJogador;
     }
 
-    float forcaTimeA = calculaForcaPonderada(forcasTimeA);
-    float forcaTimeB = calculaForcaPonderada(forcasTimeB);
+    float forcaA = calculaForcaPonderada(forcasA);
+    float forcaB = calculaForcaPonderada(forcasB);
 
-    printf("%s: %.2f de forca\n%s: %.2f de forca\n", nomeTimeA, forcaTimeA, nomeTimeB, forcaTimeB);
+    printf("%s: %.2f de forca\n%s: %.2f de forca\n", nomeTimeA, forcaA, nomeB, forcaB);
 
-    if (forcaTimeA > forcaTimeB)
-        printf("%s eh mais forte\n", nomeTimeA);
-    else if (forcaTimeB > forcaTimeA)
-        printf("%s eh mais forte\n", nomeTimeB);
+    if (forcaA > forcaB)
+        printf("%s eh mais forte\n", nomeA);
+    else if (forcaB > forcaA)
+        printf("%s eh mais forte\n", nomeB);
     else
         printf("Os times têm a mesma forca\n");
 
@@ -103,16 +102,16 @@ QUESTÃO 3
 
 
 int main(){
-    int matrizA[4][4];
-    int matrizB[4][4];
+    int matriz1[4][4];
+    int matriz1[4][4];
     int resultado[4][4];
-    char operacao[5];
+    char valor[5];
     
     for (int i = 0; i < 4; i++)
     {
       for (int j = 0; j < 4; j++)
       {
-         scanf("%d",&matrizA[i][j]);
+         scanf("%d",&matriz1[i][j]);
       }
     }
     for (int i = 0; i < 4; i++)
@@ -123,13 +122,13 @@ int main(){
       }
     }
 
-    scanf("%s", operacao);
+    scanf("%s", );
 
-    if (strcmp(operacao,"soma")==0)
+    if (strcmp(valor,"soma")==0)
     {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                resultado[i][j] = matrizA[i][j] + matrizB[i][j];
+                resultado[i][j] = matriz1[i][j] + matriz2[i][j];
             }
         }
      }
